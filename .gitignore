@@ -1,0 +1,9 @@
+.DS_Store
+.env
+.claude/settings.local.json
+
+# Material bruto de fontes/: pode conter dados sensíveis (ver fontes/README.md)
+fontes/inbox/*
+fontes/originais/**
+!fontes/inbox/.gitkeep
+!fontes/originais/.gitkeep
