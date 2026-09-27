@@ -25,12 +25,12 @@ Proponha o texto preenchido, confirme comigo e grave `prioridades.md` com a data
 
 - Lembre a diferença (método PARA): **área** é uma responsabilidade contínua, sem fim (ex.: `saude`, `carreira`, `familia`); **projeto** tem objetivo e termina, e fica em `projetos/`.
 - A partir das prioridades, proponha áreas (nome curto em kebab-case; no onboarding, de 2 a 4) e o **papel** que você deve assumir em cada uma.
-- Para cada área confirmada: copie `areas/_modelo/` para `areas/<nome>/` e preencha o `CLAUDE.md` e o título do `tarefas.md` da área com o que conversamos, deixando `TODO` onde faltar informação.
-- Atualize a tabela de áreas no `CLAUDE.md` da raiz e no `README.md` (removendo a linha de exemplo, se ainda estiver lá).
+- Para cada área confirmada: copie `areas/_modelo/` para `areas/<nome>/` (o `CLAUDE.md` da área só importa o `AGENTS.md`; não o edite) e preencha o `AGENTS.md` e o título do `tarefas.md` da área com o que conversamos, deixando `TODO` onde faltar informação.
+- Atualize a tabela de áreas no `AGENTS.md` da raiz e no `README.md` (removendo a linha de exemplo, se ainda estiver lá).
 
 ## 4. Repositórios externos
 
-Pergunte se algum projeto vive num repositório externo (ex.: software). Se sim, adicione o caminho absoluto em `additionalDirectories` de `.claude/settings.json`, preencha o campo `repositorio:` do projeto e avise que a permissão vale a partir da próxima sessão.
+Pergunte se algum projeto vive num repositório externo (ex.: software). Se sim, dê acesso a ele na ferramenta em uso (no Claude Code, o caminho absoluto em `additionalDirectories` de `.claude/settings.json`; no Antigravity e no Gemini CLI, abra o repositório como pasta adicional do workspace), preencha o campo `repositorio:` do projeto e avise que a permissão vale a partir da próxima sessão.
 
 ## 5. Encerrar
 

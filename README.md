@@ -1,25 +1,25 @@
 # myos
 
-Um assistente pessoal para acompanhar projetos, pendências, ideias e estudos, organizado por áreas, com o [Claude Code](https://claude.com/claude-code). Tudo fica em arquivos Markdown nesta pasta; o agente lê e escreve esses arquivos seguindo as regras do [CLAUDE.md](CLAUDE.md).
+Um assistente pessoal para acompanhar projetos, pendências, ideias e estudos, organizado por áreas. Funciona com o [Claude Code](https://claude.com/claude-code) e com os agentes do Google ([Antigravity](https://antigravity.google) e [Gemini CLI](https://geminicli.com)). Tudo fica em arquivos Markdown nesta pasta; o agente lê e escreve esses arquivos seguindo as regras do [AGENTS.md](AGENTS.md).
 
 A organização segue o método **PARA**: uma **área** é uma responsabilidade contínua (saúde, carreira, família...); um **projeto** tem objetivo e termina, e pertence a uma área.
 
 ## Comece aqui
 
 1. **Crie o seu repositório a partir deste template**, de preferência **privado**: ele vai guardar informação pessoal.
-2. **Abra a pasta no Claude Code** e digite `/os-onboarding`. O agente apresenta o sistema e conversa com você para preencher as [prioridades](prioridades.md) (valores, prioridades do momento e tempo disponível), criar as suas áreas a partir de [areas/_modelo/](areas/_modelo/) e registrar os primeiros projetos. Ele roda uma vez só: ao final, cria o arquivo `.onboarding-concluido`, que impede uma nova execução.
+2. **Abra a pasta no seu agente** e digite `/os-onboarding` (no Gemini CLI, peça "roda o os-onboarding"). O agente apresenta o sistema e conversa com você para preencher as [prioridades](prioridades.md) (valores, prioridades do momento e tempo disponível), criar as suas áreas a partir de [areas/_modelo/](areas/_modelo/) e registrar os primeiros projetos. Ele roda uma vez só: ao final, cria o arquivo `.onboarding-concluido`, que impede uma nova execução.
 3. **Depois**, use `/os-novo-projeto` para projetos novos e jogue ideias soltas em [inbox.md](inbox.md).
 4. **No dia a dia**, use `/os-hoje` de manhã e `/os-fim-do-dia` ao encerrar.
 5. **Uma vez por semana**, rode `/os-revisao`.
 
-Se quiser, ajuste o [CLAUDE.md](CLAUDE.md) ao seu jeito: o papel do assistente, o idioma e as convenções.
+Se quiser, ajuste o [AGENTS.md](AGENTS.md) ao seu jeito: o papel do assistente, o idioma e as convenções.
 
 ## Como usar
 
-Abra o Claude Code **dentro da área** em que quer trabalhar. O contexto da área é carregado junto com o global:
+Abra o agente **dentro da área** em que quer trabalhar. O contexto da área é carregado junto com o global:
 
 ```bash
-cd myos/areas/<area> && claude
+cd myos/areas/<area> && claude   # ou: gemini
 ```
 
 Abrindo na raiz, você trabalha na visão geral: inbox, revisão semanal de todas as áreas e prioridades. Para trocar de área no VS Code, use `/os-area <nome>`.
@@ -55,7 +55,7 @@ trimestre: revisão de prioridades.md, disparada pelo /os-revisao
 | `.onboarding-concluido` | Flag criada ao fim do `/os-onboarding`; não apague |
 | [prioridades.md](prioridades.md) | Valores, prioridades do momento e capacidade semanal |
 | [projetos/](projetos/) | Um arquivo por projeto, com a área a que pertence: objetivo, próximos passos, pendências e registro |
-| `areas/<area>/CLAUDE.md` | Contexto da área e o papel do assistente nela |
+| `areas/<area>/AGENTS.md` | Contexto da área e o papel do assistente nela |
 | `areas/<area>/tarefas.md` | Pendências avulsas da área |
 | `areas/<area>/ideias/` | Ideias pensadas, inclusive as descartadas |
 | `areas/<area>/notes/` | Referências, listas de estudo, currículo, anotações |
@@ -73,9 +73,21 @@ trimestre: revisão de prioridades.md, disparada pelo /os-revisao
 |---|---|
 | _(criadas pelo `/os-onboarding`)_ | |
 
+## Claude Code e agentes do Google
+
+Os arquivos são os mesmos para todos; nada é duplicado:
+
+| Arquivo | Claude Code | Antigravity / Gemini CLI |
+|---|---|---|
+| `AGENTS.md` (raiz e áreas) | lido pelo `CLAUDE.md`, que só contém `@AGENTS.md` | lido direto (Gemini CLI via [.gemini/settings.json](.gemini/settings.json)) |
+| `.agents/skills/` | lido pelo atalho `.claude/skills` (symlink) | lido direto |
+| Comandos | `/os-hoje` | Antigravity: `/os-hoje`; Gemini CLI: "roda o os-hoje" |
+
+Edite sempre o `AGENTS.md` e os arquivos em `.agents/skills/`. No Windows, ative symlinks no git (`git config core.symlinks true`, com o modo desenvolvedor ligado) antes de clonar.
+
 ## Projetos com repositório externo
 
-Um projeto pode apontar para outro repositório (campo `repositorio:`, ex.: um software que você desenvolve). O trabalho técnico vive lá; o myos só lê para acompanhar o progresso. Adicione o caminho em `additionalDirectories` de [.claude/settings.json](.claude/settings.json).
+Um projeto pode apontar para outro repositório (campo `repositorio:`, ex.: um software que você desenvolve). O trabalho técnico vive lá; o myos só lê para acompanhar o progresso. Dê acesso a ele no agente: no Claude Code, em `additionalDirectories` de [.claude/settings.json](.claude/settings.json); no Antigravity e no Gemini CLI, como pasta adicional do workspace.
 
 ## Privacidade
 

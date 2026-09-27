@@ -21,7 +21,7 @@ Em até 6 linhas, explique:
 
 ## 2. Sobre você
 
-Pergunte meu nome e se quero ajustar algo no jeito do assistente (idioma, tom, quanto deve cobrar). Grave no `CLAUDE.md` da raiz: o nome na frase de abertura ("o seu sistema pessoal" → "o sistema pessoal de <nome>") e os ajustes na seção "Seu papel".
+Pergunte meu nome e se quero ajustar algo no jeito do assistente (idioma, tom, quanto deve cobrar). Grave no `AGENTS.md` da raiz: o nome na frase de abertura ("o seu sistema pessoal" → "o sistema pessoal de <nome>") e os ajustes na seção "Seu papel".
 
 ## 3. Prioridades, áreas e repositórios externos
 

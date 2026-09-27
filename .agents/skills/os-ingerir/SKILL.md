@@ -6,7 +6,7 @@ argument-hint: "[arquivo em fontes/inbox/ | vazio para listar]"
 
 # Ingerir fonte
 
-Argumento recebido: `$ARGUMENTS`
+Argumento recebido (o texto digitado após o comando, se houver): `$ARGUMENTS`
 
 Rode na raiz do myos (a ingestão escreve em qualquer área). O fluxo e as convenções estão em `fontes/README.md`.
 
@@ -29,7 +29,7 @@ Não invente o que não está na fonte. Marque interpretações como `SUPOSIÇÃ
 
 ## 3. Definir a área
 
-- Liste as pastas em `areas/` (exceto `_modelo`) e use a descrição da tabela de áreas do `CLAUDE.md` da raiz.
+- Liste as pastas em `areas/` (exceto `_modelo`) e use a descrição da tabela de áreas do `AGENTS.md` da raiz.
 - Se a área for clara, proponha-a. Se não for, pergunte: "Essa informação pertence a qual área?" e ofereça as opções.
 - Se não couber em nenhuma área, diga isso e sugira criar uma área nova ou deixar só a ficha, sem forçar a classificação.
 - Se a fonte for sobre um projeto com **repositório externo** (campo `repositorio:`, ex.: um software que você desenvolve), grave no myos apenas a visão pessoal (metas, tempo, motivação). Conteúdo de produto vai como sugestão para o repositório, que eu aplico lá.

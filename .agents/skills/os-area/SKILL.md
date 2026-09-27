@@ -7,12 +7,12 @@ argument-hint: "[area | raiz]"
 
 # Trocar de área
 
-Argumento recebido: `$ARGUMENTS`
+Argumento recebido (o texto digitado após o comando, se houver): `$ARGUMENTS`
 
 A raiz do myos é o topo deste repositório (`git rev-parse --show-toplevel`).
 
-1. **Sem argumento:** liste as pastas em `areas/`, exceto `_modelo` (uma linha cada, com a descrição da tabela de áreas do `CLAUDE.md` da raiz) e pergunte para qual trocar.
+1. **Sem argumento:** liste as pastas em `areas/`, exceto `_modelo` (uma linha cada, com a descrição da tabela de áreas do `AGENTS.md` da raiz) e pergunte para qual trocar.
 2. **`raiz` ou `myos`:** o destino é a raiz do myos.
 3. **Nome de área:** o destino é `areas/<nome>`. Aceite correspondência parcial (ex.: `saud` para `saude`). Se não houver correspondência ou houver mais de uma, liste as opções e pergunte.
-4. Abra o destino com `code "<caminho absoluto>"`. Se a pasta já estiver aberta numa janela, o VS Code apenas a traz para frente.
-5. Responda numa linha: a área aberta e a orientação para abrir o chat do Claude na nova janela. Não faça mais nada nesta conversa.
+4. Abra o destino no editor em uso: `code "<caminho absoluto>"` no VS Code ou `antigravity "<caminho absoluto>"` no Antigravity. Se a pasta já estiver aberta numa janela, o editor apenas a traz para frente.
+5. Responda numa linha: a área aberta e a orientação para abrir o chat do agente na nova janela. Não faça mais nada nesta conversa.

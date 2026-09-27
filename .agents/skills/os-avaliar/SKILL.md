@@ -6,11 +6,11 @@ argument-hint: "[ideia]"
 
 # Avaliar ideia
 
-Argumento recebido: `$ARGUMENTS`
+Argumento recebido (o texto digitado após o comando, se houver): `$ARGUMENTS`
 
 Uma conversa franca, não uma análise formal. Descartar ou adiar com o motivo registrado é um bom resultado: evita reabrir a mesma discussão depois.
 
-1. **Contexto:** identifique a área (a atual, ou sugira e confirme na raiz). Leia `prioridades.md`, o `CLAUDE.md` da área e os projetos `ativo` em `projetos/`. Se `areas/<area>/ideias/<slug>.md` já existir, continue a partir dele.
+1. **Contexto:** identifique a área (a atual, ou sugira e confirme na raiz). Leia `prioridades.md`, o `AGENTS.md` da área e os projetos `ativo` em `projetos/`. Se `areas/<area>/ideias/<slug>.md` já existir, continue a partir dele.
 2. **Pensar junto**, em prosa:
    - o que eu ganho e o que custa (tempo, dinheiro, energia);
    - o que teria que pausar para caber;
