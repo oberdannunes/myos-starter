@@ -26,7 +26,19 @@ Cada área tem seu próprio `AGENTS.md` com contexto e o papel do agente naquela
 
 Um projeto pode apontar para um **repositório externo** (campo `repositorio:`, ex.: software): o trabalho técnico vive lá, e o myos só lê para acompanhar o progresso. O agente precisa ter acesso a ele: no Claude Code, em `additionalDirectories` de `.claude/settings.json`; no Antigravity e no Gemini CLI, como pasta adicional do workspace.
 
-**Isolamento de contexto:** ao trabalhar dentro de uma área, considere só os projetos com `area:` igual à área atual e não leia nem altere outras áreas, a menos que eu peça. Na raiz, a visão é global. Exceções: o diário (`diario/`) é único para todas as áreas, e o `/os-fim-do-dia` pode propor conquistas para um brag document (ex.: `areas/carreira/notes/brag-document.md`), se você mantiver um.
+## Raiz e áreas
+
+| Onde | Para quê | Comandos |
+|---|---|---|
+| **Raiz** | Planejar, fechar o dia, revisar, organizar e decidir, com a visão de todas as áreas | Todos |
+| **Área** | Execução contínua, com o papel definido no `AGENTS.md` da área | Só o `/os-area` |
+
+Os comandos exceto o `/os-area` verificam se estão na raiz e, dentro de uma área, param e sugerem `/os-area raiz`.
+
+Dentro de uma área:
+- **Isolamento:** considere só os projetos com `area:` igual à área atual e não leia nem altere outras áreas, a menos que eu peça.
+- **Registro:** quando eu contar algo feito, decidido ou descoberto, anote uma linha curta em "Registro" no diário do dia, na raiz (`diario/AAAA/AAAA-MM-DD.md`, criado a partir do template se não existir), e marque o item correspondente como `[x]` com a data. Isso vale também na raiz. Sem horário; só o relevante.
+- **Captura:** pendência avulsa vai para o `tarefas.md` da área. Ideia ou possível projeto novo vai para o `inbox.md` da raiz, com a data, para decidir depois com `/os-avaliar` ou `/os-novo-projeto`.
 
 ## Onde fica cada coisa
 
@@ -41,13 +53,17 @@ Um projeto pode apontar para um **repositório externo** (campo `repositorio:`, 
 | Captura rápida, sem saber onde encaixar | [inbox.md](inbox.md) |
 | Material bruto para ler (chats, transcrições, documentos) | `fontes/inbox/`, processado com `/os-ingerir` ([fontes/README.md](fontes/README.md)) |
 | Revisões semanais | `reviews/AAAA-Www.md` |
+| Compromissos recorrentes, hábitos e datas fixas | Seção `## Recorrentes` do `AGENTS.md` da área |
 
 Convenções:
-- Tarefas em checklist: `[ ]` pendente, `[~]` em andamento, `[x]` feita (com a data), `[-]` cancelada.
-- O `status` de um projeto é `ativo`, `pausado` ou `concluido`. Respeite o limite de projetos ativos de [prioridades.md](prioridades.md).
+- Tarefas em checklist: `[ ]` pendente, `[~]` em andamento, `[x]` feita (com a data), `[-]` cancelada. Prazo, quando houver, no fim da linha: `- [ ] renovar passaporte (prazo: 2026-11-30)`.
+- O `status` de um projeto é `ativo`, `pausado`, `concluido` ou `abandonado`. Respeite o limite de projetos ativos de [prioridades.md](prioridades.md).
+- Recorrentes: uma linha por item na seção `## Recorrentes` do `AGENTS.md` da área, com a frequência ou a data (`- caminhada: 3x por semana`, `- aniversário: anual, 03-15`). O `/os-hoje` e o `/os-revisao` leem essa seção.
+- Ideia que vira projeto: o campo `projeto:` da ideia aponta para `projetos/<slug>.md`, e o registro do projeto cita a ideia de origem.
 - Slugs em kebab-case.
 - Itens da `inbox.md` começam com a data de captura (`- AAAA-MM-DD: ...`), para a revisão semanal identificar os envelhecidos.
 - Quando os planos mudarem, atualize o arquivo do projeto e anote a decisão no registro dele.
+- Versionamento: no fim do `/os-fim-do-dia` e do `/os-revisao`, proponha um commit com as mudanças (mensagem curta em português) e o push. Só faça depois da minha confirmação.
 
 ## Comandos
 
@@ -61,6 +77,8 @@ Convenções:
 | `/os-fim-do-dia` | Fechar o dia: marcar o que foi feito, anotar o que fica para amanhã e as conquistas |
 | `/os-revisao` | Revisão semanal: progresso, triagem da inbox, arquivamento e foco da semana (e a revisão trimestral das prioridades, quando vencer) |
 | `/os-ingerir` | Processar um arquivo de `fontes/inbox/`: classifica a área, arquiva o original e grava o conteúdo |
-| `/os-area <nome>` | Abrir a área numa nova janela do VS Code, com conversa limpa (`/os-area raiz` para a visão global) |
+| `/os-area <nome>` | Abrir a área numa nova janela do editor (VS Code ou Antigravity), com conversa limpa (`/os-area raiz` para a visão global) |
+
+Todos rodam só na raiz, exceto o `/os-area` (ver "Raiz e áreas").
 
 Os comandos são skills em `.agents/skills/` (o `.claude/skills` é um atalho para a mesma pasta). No Claude Code e no Antigravity, digite `/<nome>`; no Gemini CLI, peça pelo nome (ex.: "roda o os-hoje"). Os comandos são atalhos, não obrigações: pedidos em linguagem natural ("anota que preciso...", "o que falta no projeto X?", "me ajuda a atualizar o currículo") devem funcionar do mesmo jeito.

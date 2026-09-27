@@ -1,6 +1,6 @@
 ---
 name: os-configurar
-description: Configuração do myos depois do onboarding. Cria novas áreas, revisa as prioridades e registra repositórios externos. Use quando eu quiser criar ou reorganizar áreas, revisar prioridades.md fora da revisão trimestral ou ligar um projeto a um repositório externo.
+description: Só na raiz do myos. Configuração do myos depois do onboarding. Cria novas áreas, revisa as prioridades e registra repositórios externos. Use quando eu quiser criar ou reorganizar áreas, revisar prioridades.md fora da revisão trimestral ou ligar um projeto a um repositório externo.
 ---
 
 # Configurar o myos
@@ -9,6 +9,7 @@ Conduza como uma conversa leve, em prosa, com poucas perguntas por vez. Não é 
 
 ## 1. Detectar o estado
 
+- **Só na raiz:** a configuração altera arquivos globais (`AGENTS.md` da raiz, `README.md`, `prioridades.md`, `.claude/settings.json`). Compare `pwd` com `git rev-parse --show-toplevel`. Se forem diferentes (ex.: dentro de `areas/<area>/`), não altere nada: responda numa linha que o `/os-configurar` roda só na raiz e sugira `/os-area raiz`.
 - Se `.onboarding-concluido` não existir na raiz: sugira rodar `/os-onboarding` primeiro e pare, a menos que eu peça só uma parte específica.
 - Senão: pergunte se quero **criar uma área nova** (passo 3), **revisar as prioridades** (passo 2) ou **ligar um repositório externo** (passo 4).
 
@@ -25,7 +26,7 @@ Proponha o texto preenchido, confirme comigo e grave `prioridades.md` com a data
 
 - Lembre a diferença (método PARA): **área** é uma responsabilidade contínua, sem fim (ex.: `saude`, `carreira`, `familia`); **projeto** tem objetivo e termina, e fica em `projetos/`.
 - A partir das prioridades, proponha áreas (nome curto em kebab-case; no onboarding, de 2 a 4) e o **papel** que você deve assumir em cada uma.
-- Para cada área confirmada: copie `areas/_modelo/` para `areas/<nome>/` (o `CLAUDE.md` da área só importa o `AGENTS.md`; não o edite) e preencha o `AGENTS.md` e o título do `tarefas.md` da área com o que conversamos, deixando `TODO` onde faltar informação.
+- Para cada área confirmada: copie `areas/_modelo/` para `areas/<nome>/` (o `AGENTS.md` da área só importa o `AGENTS.md`; não o edite) e preencha o `AGENTS.md` e o título do `tarefas.md` da área com o que conversamos, deixando `TODO` onde faltar informação.
 - Atualize a tabela de áreas no `AGENTS.md` da raiz e no `README.md` (removendo a linha de exemplo, se ainda estiver lá).
 
 ## 4. Repositórios externos

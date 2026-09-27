@@ -1,10 +1,11 @@
 ---
 titulo: TÍTULO
 area: AREA      # pasta em areas/ a que o projeto pertence
-status: ativo   # ativo | pausado | concluido
+status: ativo   # ativo | pausado | concluido | abandonado
 criado: AAAA-MM-DD
 prazo:          # opcional
 repositorio:    # opcional: caminho de um repositório externo (ex.: software)
+ideia:          # opcional: areas/<area>/ideias/<slug>.md de origem
 ---
 
 # TÍTULO

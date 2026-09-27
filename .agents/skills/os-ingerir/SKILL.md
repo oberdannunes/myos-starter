@@ -1,6 +1,6 @@
 ---
 name: os-ingerir
-description: Ingere material bruto de fontes/inbox/ no myos (chats, transcrições, documentos, e-mails, artigos). Lê a fonte, confirma a área, arquiva o original, cria a ficha em fontes/registros/ e grava o conteúdo útil na área. Use quando eu disser que coloquei algo na inbox de fontes, pedir para ler, resumir ou arquivar um material, ou na triagem de fontes pendentes.
+description: Só na raiz do myos. Ingere material bruto de fontes/inbox/ no myos (chats, transcrições, documentos, e-mails, artigos). Lê a fonte, confirma a área, arquiva o original, cria a ficha em fontes/registros/ e grava o conteúdo útil na área. Use quando eu disser que coloquei algo na inbox de fontes, pedir para ler, resumir ou arquivar um material, ou na triagem de fontes pendentes.
 argument-hint: "[arquivo em fontes/inbox/ | vazio para listar]"
 ---
 
@@ -8,7 +8,11 @@ argument-hint: "[arquivo em fontes/inbox/ | vazio para listar]"
 
 Argumento recebido (o texto digitado após o comando, se houver): `$ARGUMENTS`
 
-Rode na raiz do myos (a ingestão escreve em qualquer área). O fluxo e as convenções estão em `fontes/README.md`.
+O fluxo e as convenções estão em `fontes/README.md`.
+
+## 0. Só na raiz
+
+A ingestão escreve em qualquer área, por isso roda só na raiz do myos. Compare `pwd` com `git rev-parse --show-toplevel`. Se forem diferentes (ex.: dentro de `areas/<area>/`), não liste nem leia nada: responda numa linha que o `/os-ingerir` roda só na raiz e sugira `/os-area raiz`.
 
 ## 1. Identificar a fonte
 

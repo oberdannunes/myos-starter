@@ -1,15 +1,17 @@
 ---
 name: os-onboarding
-description: Primeiro uso do myos. Apresenta o sistema, preenche as prioridades, cria as áreas e os primeiros projetos. Roda uma única vez; depois, o arquivo .onboarding-concluido bloqueia novas execuções. Use quando eu digitar /os-onboarding ou quando o myos ainda não tiver sido configurado.
+description: Só na raiz do myos. Primeiro uso do myos. Apresenta o sistema, preenche as prioridades, cria as áreas e os primeiros projetos. Roda uma única vez; depois, o arquivo .onboarding-concluido bloqueia novas execuções. Use quando eu digitar /os-onboarding ou quando o myos ainda não tiver sido configurado.
 ---
 
 # Onboarding
 
-## 0. Verificar a flag
+## 0. Verificar a pasta e a flag
+
+Compare `pwd` com `git rev-parse --show-toplevel`. Se forem diferentes, responda numa linha que o `/os-onboarding` roda só na raiz e sugira `/os-area raiz`.
 
 Se o arquivo `.onboarding-concluido` existir na raiz do repositório (`git rev-parse --show-toplevel`), **não rode o onboarding**. Responda numa linha com a data registrada nele e diga que áreas novas e revisão de prioridades ficam no `/os-configurar`. Se eu insistir em refazer, explique que basta apagar `.onboarding-concluido`, mas não apague por mim.
 
-Se não existir, siga os passos abaixo como uma conversa leve, com poucas perguntas por vez. Rode na raiz do myos.
+Se não existir, siga os passos abaixo como uma conversa leve, com poucas perguntas por vez.
 
 ## 1. Boas-vindas
 

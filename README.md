@@ -16,25 +16,67 @@ Se quiser, ajuste o [AGENTS.md](AGENTS.md) ao seu jeito: o papel do assistente, 
 
 ## Como usar
 
-Abra o agente **dentro da área** em que quer trabalhar. O contexto da área é carregado junto com o global:
+- **Raiz (`myos/`)**: o padrão. Planejar e fechar o dia, revisar a semana, ingerir fontes, avaliar ideias e criar projetos. Todos os comandos rodam aqui.
+- **Área (`areas/<nome>/`)**: para sessões de trabalho focado (currículo, estudo, planejar uma viagem), com o papel do assistente naquela área. Lá, o que você contar é registrado no diário e as ideias novas vão para a inbox. O único comando é o `/os-area`, para trocar de área ou voltar à raiz.
 
-```bash
-cd myos/areas/<area> && claude   # ou: gemini
 ```
-
-Abrindo na raiz, você trabalha na visão geral: inbox, revisão semanal de todas as áreas e prioridades. Para trocar de área no VS Code, use `/os-area <nome>`.
+/os-area <nome>     # abre a área numa nova janela do editor
+/os-area raiz       # volta para a visão global
+```
 
 Não precisa de comando para tudo: "anota que preciso...", "o que falta no projeto X?" ou "me ajuda com o currículo" também funcionam.
 
-## Rotina
+## Workflow
 
-```
-captura (inbox.md, fontes/) ─▶ ideia (/os-avaliar) ─▶ projeto (/os-novo-projeto) ─▶ arquivo/
+```mermaid
+flowchart TD
+    subgraph DIA["Dia"]
+        H["Manhã · raiz<br/>/os-hoje<br/>1 a 3 itens, diário aberto"]
+        E["Durante o dia<br/>área (/os-area X) ou repositório externo<br/>executar e contar o que fez"]
+        F["Fim do dia · raiz<br/>/os-fim-do-dia<br/>fecha o diário, lê os commits, propõe commit"]
+        H --> E --> F
+    end
 
-dia:      /os-hoje (plano) ─▶ registro no diário ─▶ /os-fim-do-dia (fechamento)
-semana:   /os-revisao (lê os diários, triagem, arquivamento, foco)
-trimestre: revisão de prioridades.md, disparada pelo /os-revisao
+    subgraph SEMANA["Semana"]
+        R["Uma vez por semana · raiz<br/>/os-revisao<br/>triagem, arquivamento, foco da semana"]
+    end
+
+    subgraph CAPTURA["Captura (a qualquer momento)"]
+        I["inbox.md / fontes/inbox/"]
+        A["/os-avaliar"]
+        P["/os-novo-projeto"]
+        X["arquivo/"]
+        I --> A --> P --> X
+    end
+
+    D[("diario/")]
+    E -. registro .-> D
+    F -- fechamento --> D
+    D -- lê a semana --> R
+    R -- foco --> H
+    R -- triagem --> I
+    R -. a cada 90 dias .-> Q["Revisão de prioridades.md"]
 ```
+
+| Quando | Onde | O que fazer |
+|---|---|---|
+| Manhã | Raiz | `/os-hoje`: escolher de 1 a 3 itens e abrir o diário |
+| Durante o dia | Área ou repositório externo | Executar. Contar o que foi feito, decidido ou descoberto ("terminei X") para ir ao diário |
+| Fim do dia | Raiz | `/os-fim-do-dia`: fechar o diário, registrar conquistas e fazer o commit do myos |
+| Uma vez por semana (ex.: domingo) | Raiz | `/os-revisao`: progresso, triagem da inbox e de `fontes/inbox/`, arquivamento, foco da semana |
+| A cada trimestre | Raiz | Revisão de `prioridades.md`, disparada pelo `/os-revisao` |
+
+### Onde anotar o quê
+
+| O que surgiu | Destino | Como |
+|---|---|---|
+| Algo feito, decidido ou descoberto | `diario/` (e `[x]` no item) | "terminei...", "decidi..." (de qualquer lugar) |
+| Pendência avulsa | `areas/<area>/tarefas.md` | "anota que preciso..." |
+| Ideia ou possível projeto | `inbox.md` | "anota essa ideia..."; decidir depois com `/os-avaliar` |
+| Material para ler (chat, transcrição, documento) | `fontes/inbox/` | Salvar o arquivo lá e rodar `/os-ingerir` |
+| Trabalho técnico de um projeto com repositório | O próprio repositório | Os commits são lidos pelo `/os-fim-do-dia` e pelo `/os-revisao` |
+
+Todos rodam só na raiz, exceto o `/os-area`.
 
 | Comando | O que faz |
 |---|---|
@@ -55,7 +97,7 @@ trimestre: revisão de prioridades.md, disparada pelo /os-revisao
 | `.onboarding-concluido` | Flag criada ao fim do `/os-onboarding`; não apague |
 | [prioridades.md](prioridades.md) | Valores, prioridades do momento e capacidade semanal |
 | [projetos/](projetos/) | Um arquivo por projeto, com a área a que pertence: objetivo, próximos passos, pendências e registro |
-| `areas/<area>/AGENTS.md` | Contexto da área e o papel do assistente nela |
+| `areas/<area>/AGENTS.md` | Contexto da área, o papel do assistente nela e os recorrentes (hábitos, datas fixas) |
 | `areas/<area>/tarefas.md` | Pendências avulsas da área |
 | `areas/<area>/ideias/` | Ideias pensadas, inclusive as descartadas |
 | `areas/<area>/notes/` | Referências, listas de estudo, currículo, anotações |
@@ -64,7 +106,7 @@ trimestre: revisão de prioridades.md, disparada pelo /os-revisao
 | [diario/](diario/) | Um arquivo por dia: plano, registro e fechamento |
 | [inbox.md](inbox.md) | Ideias e lembretes de uma linha, triados na revisão semanal |
 | [fontes/](fontes/) | Arquivos para ler e organizar (chats, transcrições, documentos), processados com `/os-ingerir` |
-| [reviews/](reviews/) | Revisões semanais |
+| [reviews/](reviews/) | Revisões semanais (`AAAA-Www.md`) |
 | [templates/](templates/) | Modelos de projeto, ideia, diário, revisão e ficha de fonte |
 
 ## Áreas (`areas/`)

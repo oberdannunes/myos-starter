@@ -7,8 +7,8 @@
 
 ## Registro
 
-<!-- Uma linha por acontecimento, com horário: o que fiz, decidi ou descobri. -->
-- HH:MM 
+<!-- Só o relevante, uma linha por fato: algo feito, decidido ou descoberto. Não é um log do dia inteiro. -->
+- 
 
 ## Fechamento
 

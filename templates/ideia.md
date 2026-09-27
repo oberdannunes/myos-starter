@@ -4,6 +4,7 @@ area: AREA
 decisao: pendente   # pendente | seguir | depois | descartar
 criada: AAAA-MM-DD
 revisitar_em:       # quando a decisão for "depois"
+projeto:            # quando a decisão for "seguir": projetos/<slug>.md
 ---
 
 # Ideia: TÍTULO

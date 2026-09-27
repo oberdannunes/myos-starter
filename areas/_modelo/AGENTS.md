@@ -12,6 +12,11 @@ Contexto de NOME DA ÁREA. Atue como **PAPEL** (ex.: tutor que propõe exercíci
 
 - Onde quero estar em 1 ano: TODO
 
+## Recorrentes
+
+<!-- Hábitos, compromissos e datas fixas, um por linha, com a frequência ou a data. Lidos pelo /os-hoje e pelo /os-revisao. -->
+- TODO (ex.: reunião mensal: toda 1ª segunda; renovação da CNH: 2027-05-10)
+
 ## Como quero que você me ajude
 
 - TODO (ex.: cobrar entregas concretas, fazer perguntas de revisão, resumir materiais que eu colocar em `notes/`).
